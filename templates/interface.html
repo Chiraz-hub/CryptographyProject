@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <title>Encrypt/Decrypt File Project</title>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="content">
+    <h1>File Encryptor</h1>
+    {% if error %}<p class="error" role="alert">{{ error }}</p>{% endif %}
+    <form method="POST" enctype="multipart/form-data" action="/encrypt" id="enc-form">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <label for="algorithm">Algorithm</label>
+      <select name="algorithm" id="algorithm" required>
+        <option value="aes-gcm">AES-GCM (Recommended)</option>
+        <option value="chacha20-poly1305">ChaCha20-Poly1305</option>
+      </select>
+
+      <div id="size-row">
+        <label for="key_size">Key size</label>
+        <select name="key_size" id="key_size">
+          <option value="256">256 bits</option>
+          <option value="192">192 bits</option>
+          <option value="128">128 bits</option>
+        </select>
+      </div>
+
+      <label>Protect with</label>
+      <label class="radio"><input type="radio" name="key_mode" value="password" checked> A password I choose</label>
+      <label class="radio"><input type="radio" name="key_mode" value="raw"> A random key (shown once)</label>
+
+      <div id="pw-rows">
+        <label for="password">Password <span class="hint">(min. 12 characters)</span></label>
+        <input type="password" name="password" id="password" autocomplete="new-password">
+        <label for="password_confirm">Confirm password</label>
+        <input type="password" name="password_confirm" id="password_confirm" autocomplete="new-password">
+        <p class="warn">If you forget the password or lose the key, the data cannot be recovered.</p>
+      </div>
+
+      <label for="file">Select a file:</label>
+      <input type="file" name="uploaded_file" id="file" required>
+      <input type="submit" value="Encrypt" class="upload">
+    </form>
+    <details>
+      <summary>About the algorithms</summary>
+      <p><b>AES-GCM</b> and <b>ChaCha20-Poly1305</b> are authenticated: a wrong key or any modification makes decryption fail instead of producing garbage. A password is only as strong as you make it.</p>
+    </details>
+  </div>
+
+  <div class="content">
+    <h2>Decrypt</h2>
+    <form method="POST" enctype="multipart/form-data" action="/decrypt" id="dec-form">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <label for="dfile">Encrypted file (.enc)</label>
+      <input type="file" name="uploaded_file" id="dfile" required>
+      <label for="dpassword">Password <span class="hint">(if you used one)</span></label>
+      <input type="password" name="password" id="dpassword" autocomplete="off">
+      <label for="dkey">Key <span class="hint">(hex, if you used a random key)</span></label>
+      <input type="text" name="key" id="dkey" autocomplete="off" spellcheck="false">
+      <p class="hint">The algorithm is read from the file itself.</p>
+      <input type="submit" value="Decrypt" class="upload">
+    </form>
+  </div>
+
+</div>
+<script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</body>
+</html>

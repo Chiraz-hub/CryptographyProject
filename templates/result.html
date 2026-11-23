@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <title>Encryption complete</title>
+</head>
+<body>
+<div class="wrap"><div class="content">
+  <h2>Encrypted</h2>
+  <p class="warn">Save this key now. It is shown only once and is not stored anywhere. Without it the file can never be decrypted.</p>
+  <label for="key">Your key (hex)</label>
+  <input type="text" id="key" class="keybox" value="{{ key_hex }}" readonly>
+  <form class="actions" action="#">
+    <button type="button" class="upload" id="copy">Copy key</button>
+    <a class="upload" href="{{ url_for('download', token=token) }}">Download {{ name }}</a>
+  </form>
+  <p class="hint">The download link works once and expires in {{ minutes }} minutes. Keep the key separate from the .enc file.</p>
+  <p><a href="/">← Back</a></p>
+</div></div>
+<script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</body>
+</html>

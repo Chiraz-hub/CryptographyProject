@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Secrets and local config: never commit these
+.env
+*.key
+*.iv
+
+# Anything this app (or its old version) produced or processed
+uploads/
+*.enc
+*_encrypted.zip

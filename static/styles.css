@@ -1,0 +1,105 @@
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: radial-gradient(circle at center, #ffffff 0%, #eef1f6 70%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+  color: #2c2c2c;
+  text-align: center;
+}
+.content h1 {
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 2.2rem;
+  text-align: center;
+}
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  padding: 24px 16px;
+  box-sizing: border-box;
+  width: 100%;
+}
+.content {
+  background-color: #ffffff;
+  padding: 30px 35px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+.content h2 { margin-top: 0; color: #2c2c2c; text-align: center; }
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-size: 1.1rem;
+}
+label { font-weight: 200; color: #444; }
+select,
+input[type="file"],
+input[type="password"],
+input[type="text"] {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  width: 100%;
+  box-sizing: border-box;
+}
+select:focus,
+input[type="file"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus { outline: none; border-color: #4f46e5; }
+input[type="file"]::file-selector-button {
+  padding: 8px 14px;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  border: none;
+  background-color: #7876a3;
+  color: white;
+  cursor: pointer;
+}
+input[type="file"]::file-selector-button:hover { background-color: #4338ca; }
+.upload {
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  background-color: #6e6c94;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+}
+.upload:hover { background-color: #4338ca; }
+.upload:disabled { background-color: #9ca3af; cursor: wait; }
+.hint { font-size: 0.85rem; color: #666; font-weight: normal; }
+.error, .warn {
+  font-size: 0.95rem;
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin: 0 0 16px;
+}
+.error { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+.warn { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
+.keybox { font-family: monospace; word-break: break-all; }
+details { font-size: 0.9rem; color: #444; }
+details summary { cursor: pointer; font-weight: 600; }
+.radio { font-weight: normal; display: flex; gap: 8px; align-items: center; }
+.hidden { display: none; }
+.actions { margin-top: 18px; }
